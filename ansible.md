@@ -22,21 +22,23 @@ Ansible is a powerful automation tool for IT configuration management, applicati
 
 # Installing Ansible
 
-Ubuntu/Debian:
+## Ubuntu/Debian:
 
   sudo apt update
   sudo apt install ansible
 
-CentOS/Red Hat:
+## CentOS/Red Hat:
 
   sudo yum install ansible
 
-Windows: Use WSL (Windows Subsystem for Linux) to install Ansible.
+## Windows: 
+  
+  Use WSL (Windows Subsystem for Linux) to install Ansible.
 
 
-IDE and Plugin Configuration
+## IDE and Plugin Configuration
 
-VS Code:
+## VS Code:
 
   Install the Ansible extension from the marketplace to provide syntax highlighting, autocompletion, and other useful features for writing Ansible playbooks.
 
@@ -48,8 +50,8 @@ Passwordless Authentication
 
 Set up passwordless SSH authentication to allow Ansible to manage remote machines without needing to enter a password every time:
 
-ssh-keygen -t rsa
-ssh-copy-id user@remote_host
+    ssh-keygen -t rsa
+    ssh-copy-id user@remote_host
 
 ## Ansible Inventory
 
@@ -70,7 +72,7 @@ Ansible allows you to run commands directly without creating playbooks.
 
 Example: Install a package using apt:
 
-ansible webservers -m apt -a "name=nginx state=present"
+    ansible webservers -m apt -a "name=nginx state=present"
 
 
 Ad-hoc commands are ideal for quick one-off tasks like checking service status or installing packages.
@@ -85,13 +87,21 @@ Basic structure of a Playbook:
 
 
 - name: Install NGINX and Deploy Static App
+
   hosts: webservers
+  
   become: yes
+  
   tasks:
+  
     - name: Install NGINX
+      
       apt:
+      
         name: nginx
+  
         state: present
+      
         update_cache: yes
 
 
@@ -108,7 +118,7 @@ Tasks: The individual actions that Ansible will perform (e.g., installing a pack
 Collections: Collections allow you to group related playbooks, roles, and modules for easy reuse.
 
 
-Hands-on Example: Installing Apache2 and Deploying a Static App on AWS
+## Hands-on Example: Installing Apache2 and Deploying a Static App on AWS
 
 1. Create a playbook (apache2_playbook.yml) to install Apache2.
 
@@ -125,21 +135,32 @@ Roles are a way to organize your Ansible code into reusable components, making y
 
 Folder structure of Ansible roles:
 
-roles/
-  nginx/
-    tasks/
-      main.yml
-    templates/
-      nginx.conf.j2
-    files/
-      index.html
-    handlers/
-      main.yml
-    defaults/
-      main.yml
+      roles/
+      
+        nginx/
+        
+          tasks/
+          
+            main.yml
+            
+          templates/
+          
+            nginx.conf.j2
+            
+          files/
+          
+            index.html
+            
+          handlers/
+          
+            main.yml
+            
+          defaults/
+          
+            main.yml
 
 
-Why Use Roles?
+## Why Use Roles?
 
 Reusability: A role can be reused in multiple playbooks.
 
@@ -151,7 +172,7 @@ Playbooks are used for orchestration and can reference roles.
 Roles encapsulate logic and structure, promoting modularity.
 
 
-Hands-on: Creating a Simple Role
+## Hands-on: Creating a Simple Role
 
 Create a role for setting up an NGINX server:
 
@@ -167,7 +188,7 @@ Create a role for setting up an NGINX server:
 
 ## Deep Dive into Ansible Roles with Demo
 
-Ansible Galaxy
+## Ansible Galaxy
 
 Ansible Galaxy is a hub for finding, sharing, and reusing Ansible roles. You can search for popular roles on Ansible Galaxy.
 
@@ -175,9 +196,9 @@ Importing and Installing Roles from Ansible Galaxy
 
 You can import roles from Galaxy into your project by using the following command:
 
-  ansible-galaxy install <role-name>
+      ansible-galaxy install <role-name>
 
-Demo: Advanced Usage of Ansible Roles
+## Demo: Advanced Usage of Ansible Roles
 
 In this demo, we’ll showcase the use of Ansible roles with a real project. The project will involve installing and configuring NGINX with advanced settings using roles and templates.
 
